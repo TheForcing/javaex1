@@ -2,7 +2,7 @@ package com.javaex.shape.v2;
 
 // 추상 클래스를 상속받은 클래스는
 // 반드시 추상 메서드를 구현해야한다.
-public class Rectangle extends shape {
+public class Rectangle extends shape implements Drawable {
 	//필드
 	protected int width;
 	protected int height;

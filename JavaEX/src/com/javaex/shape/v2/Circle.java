@@ -1,6 +1,6 @@
 package com.javaex.shape.v2;
 
-public class Circle extends shape {
+public class Circle extends shape implements Drawalbe {
     //필드
 	protected double radius; // 반지름
 	// 생성자

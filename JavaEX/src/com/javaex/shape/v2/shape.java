@@ -12,7 +12,7 @@ public Shape(int x, int y) {
  // 최소 1개의 추상 메서드가 있어야 한다.
 // 상속받은 실체 클래스틑 추상 메시드를
 // 반드시 구현 해야만 한다.
-public abstract void draw();
-public abstract double area();
+//public abstract void draw();
+//public abstract double area();
 
 }
