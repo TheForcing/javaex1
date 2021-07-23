@@ -18,5 +18,13 @@ public class PointApp {
            p2.draw(true);
            p2.draw(false);
            
+           ColorPoint cp1= new ColorPoint(10,20,"red");
+           ColorPoint cp2= new ColorPoint(30.40,"black");
+           
+           cp1.draw();
+           cp1.draw(true);
+           
+           cp2..draw();
+           cp2.draw(true);
 	}
 }
