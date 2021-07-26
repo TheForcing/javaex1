@@ -19,7 +19,7 @@ public class ExceptionEx {
 			//except의 excuteException 매서드내의 예외를 대신 처리
 		except.excuteException();
 		}catch (ArithmeticException e) {
-			System.err.println(e.getMessage);
+			System.err.println(e.getMessage());
 			System.err.println("-0으로 나눌순 없습니다.");
 		}
 		catch (IOException e) {// Checked Exception은 반드시 에외처리
