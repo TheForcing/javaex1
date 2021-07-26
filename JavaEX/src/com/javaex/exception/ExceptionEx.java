@@ -1,29 +1,56 @@
 package com.javaex.exception;
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class ExceptionEx {
 
 	public static void main(String[] args) {
-	  nullPointerExceptiomnEx();
-    arithExceptionEx();
-	arrayIndexExceptionEx();
+	 // nullPointerExceptiomnEx();
+    //arithExceptionEx();
+	//arrayIndexExceptionEx();
+	throwExceptEx();
+	}
+	private static void throwExceptEx() {
+		ThrowExcept except= new ThrowExcept();
+		try {
+			double result= except.divide(100,0);
+			
+			except.executeRuntimeException();
+			//except의 excuteException 매서드내의 예외를 대신 처리
+		except.excuteException();
+		}catch (ArithmeticException e) {
+			System.err.println(e.getMessage);
+			System.err.println("-0으로 나눌순 없습니다.");
+		}
+		catch (IOException e) {// Checked Exception은 반드시 에외처리
+			System.err.println(e.getMessage());
+		} catch (RuntimeException e) {
+			System.err.println(e.getMessage());
+		}
+		
 	}
 	private static void arrayIndexExceptionEx() {
-		int[] intArray= new int [] {1,3,5,7,9}
+		int[] intArray= new int [] {1,3,5,7,9};
 		// length ==5, 인덱스 범위 0~~4 (length-1)
 		try {
 			System.out.println(intArray[5]);
 			
-		} catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("예외 객체:"+e.getclass().getSipleName);
-			System.out.println("예외 메세지"+ e.getmessage());
+		} catch (CustomArithmeticException e) {
+			System.err.println(e.getMessage());
+			System.err.printf("num1:%d%n", e.getnum1());
+			System.err.printf("num2:%d%n", e.getnum2());
+			
+		}
+		catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("예외 객체:"+e.getClass().getSimpleName());
+			System.out.println("예외 메세지"+ e.getMessage());
 			System.err.printf("배열의 인덱스 범위는 0~%d까지 입니다.%n", 
 					intArray.length-1);
 			
-		}System.out.println("오류입니다.")
+		}System.out.println("오류입니다.");
 	}
 		
-	}
+	
     private static void nullPointerExceptiomnEx() {
     	String str= new String("Java");
     	System.out.println(str.toUpperCase());
@@ -31,6 +58,7 @@ public class ExceptionEx {
     	System.out.println(str);
     	try {
     	System.out.println(str.toUpperCase());
+    	}
     	
     	catch(NullPointerException e) {
     		System.err.println("str은 null 입니다. !");
