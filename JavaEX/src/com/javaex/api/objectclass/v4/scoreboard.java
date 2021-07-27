@@ -2,10 +2,15 @@ package com.javaex.api.objectclass.v4;
 
 import java.util.Arrays;
 
-public class scoreboard { int[] scores
+public class scoreboard implements Cloneable {
  // 참조 타입 필드
-	this.score=score;
 	private int score[];
+	//생성자
+	public Scoreboard(int[] scores) {
+		this.score=score;	
+	}
+	
+	
 	//setter, getter
 	public int[] getScore() {
 		
@@ -17,6 +22,16 @@ public class scoreboard { int[] scores
 	@Override
 	public String toString() {
 		return "scoreboard [scores=" + Arrays.toString(scores) + ", score=" + Arrays.toString(score) + "]";
+	}
+	public Scoreboard getClone() {
+		Scoreboard clone = null;
+		try {
+			clone= (Scoreboard)clone();
+		} catch(CloneNotSupportedException e) {
+			e.printStackTrace();
+			
+		}
+		return clone;
 	}
 	// 같은 복제의 경우, 내부 참조 필드들을
 		// 모두 내부 복사하여 내 객체로 만들고

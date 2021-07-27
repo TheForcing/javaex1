@@ -1,32 +1,49 @@
 package com.javaex.api.objectclass.v3;
 
-//v1. 모든 클래스의 최상의 부모는 Object이다.
-//  toString: 객체를 문자열로 출력할때 호출되는 매서드
+//v3. 객체 복제 clone 기능을 이용하려면
 // Cloneable 인터페이스르 구현 해야한다.
 public class Point implements Clonable {
-     // 객체 복사 시스템
-	public Point(int i, int j) {
-		// TODO Auto-generated constructor stub
-	}
-	Point p= new Point(10,20);
-	Point p2= p;
-	System.out.println("p="+p);
-	System.out.println("p2="+p2);
+    int x;
+    int y;
+    
 	
-	//p2를 변경
-	p2.x=100;
-	System.out.println("p2="+p2);
-	//참조 복제는 같은 객체 참조
-	//복제 객체를 생성하는 매서드
-	public Point getClone( ) {
-		Point clone= null;
-	// try{
-    //  clone=(Point)clone(); clone() 매서드는 checked
- //} catch (CloneNo1SuppertedException e) {
-		// e.printStackTrace()
+	public Point(int i, int j) {
+		this.x=x;
+		this.y=y;
 		
-		clone=(Point)clone();
 	}
+	
+	@Override
+	public String toString() {
+		// 객체 출력 포맷을 리턴
+		return String.format("Point(%d,%d", x,y);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// 전달 받은 obj가 Point 클래스의 객체?
+		if (obj instanceof Point) {
+			//캐스팅 가능
+			Point other=(Point)obj;
+			return x== other.x && y== other.y;
+		}
+		return super.equals(obj);
+	}
+
+	// 복원 객체를 생성하는 매서드
+	public Point getClone() {
+		Point clon= null;
+		
+		try {
+			  clone=(Point)clone(); // clone() 매서드는 checked 예외
+			
+		} catch(CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		return clone;
+	}
+
+	
 	
 	
 }
