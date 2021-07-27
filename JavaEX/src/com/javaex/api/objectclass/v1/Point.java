@@ -1,8 +1,11 @@
 package com.javaex.api.objectclass.v1;
 
+import com.javaex.api.objectclass.v3.Point;
+
 //v1. 모든 클래스의 최상의 부모는 Object이다.
 //  toString: 객체를 문자열로 출력할때 호출되는 매서드
-public class Point {
+// Cloneable 인터페이스르 구현 해야한다.
+public class Point implements Clonable {
 	private int x;
 	private int y;
 	
@@ -28,5 +31,15 @@ public class Point {
 		}
 		return super.equals(obj);
 	}
+	//복제 객체를 생성하는 매서드
+		public Point getClone( ) {
+			Point clone= null;
+		// try{
+	    //  clone=(Point)clone(); clone() 매서드는 checked
+	 //} catch (CloneNo1SuppertedException e) {
+			// e.printStackTrace()
+			
+			clone=(Point)clone();
+		}
 }
 
