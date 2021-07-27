@@ -5,8 +5,11 @@ public class StringEx {
 	public static void main(String[] args) {
 	stringBasicEx();	
     stringMethodEx();
+    stringBufferEx();
+    
     
 	}
+	
 	private static void stringMethodEx() {
 		// 유용한 매섣들
 		String str= "Java Programing, JavaScript Progaming";
@@ -56,6 +59,28 @@ public class StringEx {
 		System.out.println("Abc:".compareTo("Abc"));
 		
 		}
+	private static void stringBufferEx() {
+		// string 크기는 불변자료형 ( imutalbe)
+		// StringBuffer 객체는 버퍼 기반의 가변 자료들
+		StringBuffer sh= new StringBuffer("This");// 기본 버퍼 (10);가정
+		sh.append("is pencil"); // append 맨위에 추가
+	    sh.insert(0, "my");  // insert  중간에 삽입
+	    sh.replace(0,10,"your"); // replace 치환
+	    
+	    System.out.println(sh);
+	    
+	    sh.setLength(10); /// 버퍼크기를 강제 변경
+	    System.out.println(sh);
+	    
+	    String s= new StringBuffer("This")
+	    		.append("is pencil")
+	    		.insert(0, "my")
+	    		.replace(0,10,"your")
+	    		.tostring();
+	    System.out.println("매서드 제이닝:"+s);
+	    
+	    
+	}
 	private static void stringBasicEx() {
 		String s1= "Java"; // 리터럴
 		String s2= new String("Java"); // 새 객체 생성
@@ -71,6 +96,7 @@ public class StringEx {
          // 기본 데이터 타입을 문자열로 변화할 경우
 	//   String s5= String.valueOf(Math.pi);
 	  // System.out.println("s5->"+s5);
+	
 	}
 
 }
