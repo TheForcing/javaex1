@@ -35,7 +35,7 @@ public class WrapperEx {
         Integer i4= Integer.valueOf(2021);
         System.out.println("i3==i4?" + (i3==i4));// 다른 객체임을 유의
         System.out.println("값의 비교:" + i3.equals(14)); // 내부값의 비교
-        System.out.println("언박싱비교:" +(i3.intValue())==i4.intValue());
+        System.out.println("언박싱비교:" +(i3.intValue()==i4.intValue());
         
         
         
