@@ -18,10 +18,10 @@ public class FileClassEx {
     	  // 디렉터리 생성
     	  root.mkdirs();
     	  }
-      }
+      
            // 디렉터리 내부에 파일을 생성해 봅니다.
             File newFile= new File(rootPath + "myFile.txt");
-            if (!file.exists()) { //myFile.txt가 없으면
+            if (!newFile.exists()) { //myFile.txt가 없으면
             	//파일 생성
             	try {
             		newFile.createNewFile(); // 실제 생성
@@ -38,6 +38,7 @@ public class FileClassEx {
             
             printInfo(root);
             
+  }
 
             
     private static void printInfo(File f) {

@@ -13,8 +13,9 @@ public class FileStreamEx {
 	static String source= rootPath + "img.jpg";
 	static String target= rootPath + "img_copy.jpg";
 	
+	
 	try {
-		is= new FileInputStream(sourece);
+		is= new FileInputStream(source);
 		os= new FileOutputStream(target);
 		
 		int data= 0;

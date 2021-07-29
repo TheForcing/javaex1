@@ -42,7 +42,15 @@ public class ByteArrayStreamEx {
 		} catch(Exception e) {
 			e.printStackTrace();
 			
-		}
+		} finally {
+			try {
+			bos.close();
+			bis.close();	
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			}
+		
 			}
 		
 		
