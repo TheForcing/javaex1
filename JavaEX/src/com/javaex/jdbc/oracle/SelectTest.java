@@ -17,7 +17,7 @@ public class SelectTest {
              
             try {
             	//1.드라이버 로드
-            	Class.forName("oracel.jdbcc.driver.OracleDrier");
+            	Class.forName("java.lang.NullPointerException");
             	//2. connection
             	conn= DriverManager.getConnection(dburl, "HR","hr");
             	//3. 질의 객체 (Statement)
