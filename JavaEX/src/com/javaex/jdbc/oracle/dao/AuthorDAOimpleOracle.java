@@ -71,9 +71,49 @@ public class AuthorDAOimpleOracle implements AuthorDAO {
 
 	@Override
 	public List<AuthorVO> search(String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+		List<AuthorVO> list= new ArrayList<>();
+		
+		Connection conn= null;
+		PreparedStatement pstmt= null;
+		ResultSet rs= null;
+		
+		try {
+			conn= getConnection();
+			String sql= "Select author_id, author_name, author_desc FROM author"+
+			"where author_desc Like ?";
+			
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+keyword+"%");
+			
+			rs= pstmt.executeQuery();
+			// ResulSet-> List 변환
+			while ( rs.next()) {
+				Long id= rs.getLong(1);
+				String name= rs.getString(2);
+				String desc= rs.getString(3);
+				
+				AuthorVO vo= new AuthorVO(id, name, desc);
+				list.add(vo);
+				
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+				
+			
+			}finally {
+				
+				try {
+					rs.close();
+					pstmt.close();
+					conn.close();
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+		
+		return list;
 	}
+
 
 	@Override
 	public AuthorVO get(Long id) {
@@ -101,6 +141,13 @@ public class AuthorDAOimpleOracle implements AuthorDAO {
 			
 			}catch(SQLException e) {
 				e.printStackTrace();
+			}finally {
+				try{pstmt.close();
+				    conn.close();
+				    
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
 			}
 		
 		return 1== insertedCount;
@@ -108,14 +155,62 @@ public class AuthorDAOimpleOracle implements AuthorDAO {
 
 	@Override
 	public boolean update(AuthorVO vo) {
-		// TODO Auto-generated method stub
-		return false;
+		Connection conn = null;
+		PreparedStatement pstmt= null;
+		int updateCount= 0;
+		try {
+			conn= getConnection();
+			String sql= "UPDATE author SET author_name= ?, author_desc =?"+
+			"Where author_id=?";
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1,vo.getAuthorName());
+			pstmt.setString(2,vo.getAuthorDesc());
+			pstmt.setLong(3,vo.getAuthorId());
+			
+			updateCount= pstmt.executeUpdate();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return 1== updateCount;
 	}
 
 	@Override
 	public boolean delete(Long id) {
-		// TODO Auto-generated method stub
-		return false;
+		Connection conn= null;
+		PreparedStatement pstmt= null;
+		int deleteCount= 0;
+		
+		try {
+			conn= getConnection();
+			String sql= "DELETE FROM author"+
+			"Where author_id =?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, id);
+			
+			deleteCount= pstmt.executeUpdate();
+		   	
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+				
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return 1== deleteCount;
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.javaex.jdbc.oracle.dao;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,11 +9,62 @@ public class DAOApp {
 	
 
 	public static void main(String[] args) {
-		listAuthors();
-		insertAuthor();
+	//	listAuthors();
+		//insertAuthor();
+	//	updateAuthor();
+	//	deleteAuthor();
+          searchAuthor();
+		//	listAuthors();
+  
+	}
+	private static void searchAuthor() {
+		Scanner scanner= new Scanner(System.in);
+		System.out.print("검색어:");
+		long keyword= scanner.nextLong();
 		
-		listAuthors();
-
+		AuthorDAO dao= = new AuthorDAOimpleOracle();
+		
+		List<AuthorVO> list= dao.search(keyword);
+		Iterator<AuthorVO> it= list.iterator();
+	    
+		while (it.hasNext()) {
+			AuthorVO vo= it.next();
+			System.out.printf("%D\t%s\t%s%n",
+					vo.getAuthorId(),
+					vo.getAuthorName(),
+					vo.getAuthorDesc());}
+	}
+	private static void deleteAuthor() {
+		Scanner scanner= new Scanner(System.in);
+		System.out.print("전화번호:");
+		long authorId= scanner.nextLong();
+	      
+		AuthorDAO dao= new AuthorDAOImpleOracel();
+		
+		boolean success = dao.delete(authorId);
+		
+		System.out.println("Author DELETE: " +(success ?"성공":"실패"));
+	   scanner.close();
+	}
+	private static void updateAuthor() {
+		Scanner scanner= new Scanner(System.in);
+		System.out.print("저자번호:");
+		long authorId= scanner. nextLong();
+		System.out.print("이름:");
+        String name= scanner.nextLine();
+        System.out.print("경력:");
+        String desc= scanner.nextLine();
+        
+        
+        AuthorVO vo= new AuthorVO(authorId,name, desc);
+        
+        AuthorDAO dao= new AuthorDAOimpleOracle();
+        
+        boolean success= dao.update(vo);
+        
+        System.out.println("Author UPDATE:"+(success ? "성공":"실패"));
+        scanner.close();
+	
 	}
 	private static void insertAuthor() {
 		Scanner scanner= new Scanner(System.in);
